@@ -51,41 +51,6 @@ def resize_image(src_img, size=(128,128), bg_color="white"):
     # return the resized image
     return new_image
 
-
-# PIL image size
-o_h, o_w = rgb_pil.size
-print('Image size:', o_h, 'x', o_w) #Original size: 4284 x 2844
-
-
-
-
-## Read one NEF images as np.array
-image_path = "C:/Users/EyesHigh/Desktop/ImageProcessing/data/image1/baby.nef"
-rp_image = rawpy.imread(image_path)
-rgb = rp_image.postprocess() # np.array
-print(rgb.shape) # (2844, 4284, 3)
-print(type(rgb))
-
-
-
-
-
-def resize_image(src_img, size=(128,128), bg_color="white"): 
-    from PIL import Image
-
-    # rescale the image so the longest edge is the right size
-    src_img.thumbnail(size, Image.ANTIALIAS)
-    
-    # Create a new image of the right shape
-    new_image = Image.new("RGB", size, bg_color)
-    
-    # Paste the rescaled image onto the new background
-    new_image.paste(src_img, (int((size[0] - src_img.size[0]) / 2), int((size[1] - src_img.size[1]) / 2)))
-  
-    # return the resized image
-    return new_image
-
-# Save PIL images (img_PIL) named as (image_name) to (image_folder_path)
 def save_image_PIL(img_PIL, image_folder_path, image_name):
     import os, shutil
     from PIL import Image

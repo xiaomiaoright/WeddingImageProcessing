@@ -25,3 +25,6 @@ Create a CNN model with SKeras for image classification.
 
 6. 2-TransferLearning.py
 Demoed how to load previous trained models of image feature extraction, add a fully connected layer for classification, and train the CNN model.
+
+7. 3-ReadXMP2Labels.py
+Create functions to read through the XMP files and extract "Exposure", "Constrast", "Highlight", "Shadows", "Temperature" parameters of each XMP file. Then save these parameters in a list. 

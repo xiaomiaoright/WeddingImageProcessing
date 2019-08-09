@@ -52,8 +52,8 @@ def XMP_parameter(xmp_file_path):
 
     return parameter
 
-f = 'C:/Users/EyesHigh/Desktop/WeddingImageProcessing/data/XMPs/800_1743-1.xmp'
-print(XMP_parameter(f))
+#f = 'C:/Users/EyesHigh/Desktop/WeddingImageProcessing/data/XMPs/800_1743-1.xmp'
+#print(XMP_parameter(f))
 
 def set_Labels(XMP_folder):
     import os 
@@ -69,6 +69,6 @@ def set_Labels(XMP_folder):
 
     return Labels
 
-XMP_file = 'C:/Users/EyesHigh/Desktop/WeddingImageProcessing/data/XMPs'
+XMP_file = '/Users/user7/Desktop/WeddingImageProcessing/data/XMPs'
 Labels = set_Labels(XMP_file)
 print(Labels)

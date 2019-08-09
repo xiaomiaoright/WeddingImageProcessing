@@ -69,8 +69,8 @@ def NEFfolder2JPGfolder(NEF_folder_path, JPG_folder_path, target_size=(200,200))
 
 
 ## test the function
-NEF_folder_path = "C:/Users/EyesHigh/Desktop/WeddingImageProcessing/data/image1"
-JPG_folder_path = "C:/Users/EyesHigh/Desktop/WeddingImageProcessing/data/JPGs"
+NEF_folder_path = "/Users/user7/Desktop/WeddingImageProcessing/data/image1"
+JPG_folder_path = "/Users/user7/Desktop/WeddingImageProcessing/data/JPGs"
 
 NEFfolder2JPGfolder(NEF_folder_path, JPG_folder_path)
 

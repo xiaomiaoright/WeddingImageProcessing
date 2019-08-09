@@ -34,7 +34,10 @@ def NEF2PIL(nef_image_path):
     rgb_pil = Image.fromarray(rgb)
     return rgb_pil
 
+def PIL2RGB(pil_image):
+    pil_rgb = np.array(pil_image)
 
+    return pil_rgb
 
 # Helper function to resize image of PIL image
 def resize_image(src_img, size=(128,128), bg_color="white"): 
@@ -116,3 +119,41 @@ def save_image_plt(img_RGB, image_folder_path, image_name):
 def imageNormalization(img_RGB):
     img_RGB_n = img_RGB * 1. / 255
     return img_RGB_n
+
+
+# Test-- Read NEF images to RGB
+NEF_path = "/Users/user7/Desktop/WeddingImageProcessing/data/image1/baby.nef"
+
+# convert NEF image to RGB
+nef_rgb = NEF2RGB(NEF_path)
+print("Type of RGB images: ", type(nef_rgb))
+print("Size of RGB images: ", nef_rgb.shape)
+
+# Convert NEF image to PIL
+nef_pil = NEF2PIL(NEF_path)
+print("Type of PIL images: ", type(nef_pil))
+print("Size of PIL images: ", nef_pil.size)
+
+# Convert PIL image to RGB
+nef_pil_rgb = PIL2RGB(nef_pil)
+print("Type of NEF2PIL2RGB images: ", type(nef_pil_rgb))
+print("Size of NEF2PIL2RGB images: ", nef_pil_rgb.shape)
+
+# Plot test images
+fig = plt.figure(figsize = (30,30))
+
+a = fig.add_subplot(1,3,1)
+img_plot_1 = plt.imshow(nef_rgb)
+a.set_title("NEF2RGB Images")
+
+a = fig.add_subplot(1,3,2)
+img_plot_2 = plt.imshow(nef_pil)
+a.set_title("NEF2PIL Images")
+
+a = fig.add_subplot(1,3,3)
+img_plot_3 = plt.imshow(nef_pil_rgb)
+a.set_title("NEF2PIL2RGB Images")
+
+plt.show()
+
+

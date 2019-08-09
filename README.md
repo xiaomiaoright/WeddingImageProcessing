@@ -28,3 +28,5 @@ Demoed how to load previous trained models of image feature extraction, add a fu
 
 7. 3-ReadXMP2Labels.py
 Create functions to read through the XMP files and extract "Exposure", "Constrast", "Highlight", "Shadows", "Temperature" parameters of each XMP file. Then save these parameters in a list. 
+
+8. 4-CNN_Keras.py

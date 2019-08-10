@@ -42,7 +42,7 @@ def save_image_PIL(rgb_pil, image_folder_path, image_name):
 def NEFfolder2JPGfolder(NEF_folder_path, JPG_folder_path, target_size=(200,200)):
     import os 
     # go through all XMP files in folder
-    NEF_files = os.listdir(NEF_folder_path)
+    NEF_files = sorted(os.listdir(NEF_folder_path))
 
     
     # Get the images and show the predicted classes

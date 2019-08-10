@@ -55,20 +55,24 @@ def XMP_parameter(xmp_file_path):
 #f = 'C:/Users/EyesHigh/Desktop/WeddingImageProcessing/data/XMPs/800_1743-1.xmp'
 #print(XMP_parameter(f))
 
-def set_Labels(XMP_folder):
+
+def XMPFolder2LabelList(XMP_folder_path):
     import os 
     # go through all XMP files in folder
-    XMP_files = os.listdir(XMP_folder)
-    Labels = []
-    
-    # Get the images and show the predicted classes
-    for file_idx in range(len(XMP_files)):
-        XMP_path = os.path.join(XMP_folder, XMP_files[file_idx])
-        XMP_params = XMP_parameter(XMP_path)
-        Labels.append(XMP_params)
+    files = sorted(os.listdir(XMP_folder_path))
+    Edit_labels = []
 
-    return Labels
+    for file_idx in range(len(files)):
+        file_name = files[file_idx]
+        XMP_file_path = os.path.join(XMP_folder_path,file_name)
+        parameter = XMP_parameter(XMP_file_path)
+        Edit_labels.append(parameter)
+        
+    return Edit_labels
 
-XMP_file = '/Users/user7/Desktop/WeddingImageProcessing/data/XMPs'
-Labels = set_Labels(XMP_file)
+XMP_file_path = '/Users/user7/Downloads/HD6_12er/Erin & Dan Wedding/2017-09-23/ED_XMP'
+Labels = set_Labels(XMP_file_path)
 print(Labels)
+
+Edit_labels = XMPFolder2LabelList(XMP_file_path)
+print(np.array(Edit_labels).shape)

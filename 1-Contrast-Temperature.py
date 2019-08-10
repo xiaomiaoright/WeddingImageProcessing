@@ -8,7 +8,7 @@ import imageio
 %matplotlib inline
 
 #Load the image
-image_file = "C:/Users/EyesHigh/Desktop/ImageProcessing/data/image1/baby.nef"
+image_file = "/Users/user7/Desktop/WeddingImageProcessing/data/image1/baby.nef"
 rp_image = rawpy.imread(image_file)
 image = rp_image.postprocess() # rgb image, np.array
 print(type(image))

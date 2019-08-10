@@ -16,7 +16,7 @@ def CountFiles(path):
     return count, file_name_list
 
 NEF_file_path = "/Users/user7/Downloads/HD6_12er/Erin & Dan Wedding/2017-09-23/ED_NEF"
-count, file_name = CountFiles(file_path)
+count, file_name = CountFiles(NEF_file_path)
 print("The number of NEF files", count)
 print(file_name[:10])
 

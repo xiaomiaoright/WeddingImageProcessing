@@ -71,7 +71,7 @@ def XMPFolder2LabelList(XMP_folder_path):
     return Edit_labels
 
 XMP_file_path = '/Users/user7/Downloads/HD6_12er/Erin & Dan Wedding/2017-09-23/ED_XMP'
-Labels = set_Labels(XMP_file_path)
+Labels = XMPFolder2LabelList(XMP_file_path)
 print(Labels)
 
 Edit_labels = XMPFolder2LabelList(XMP_file_path)

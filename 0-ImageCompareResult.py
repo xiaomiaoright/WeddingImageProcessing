@@ -77,28 +77,6 @@ for i in range(5):
     image_compare_plt(path[0], path[i+1], edit[i+1])
 
 
-rmse_C1 = compare_image(test_path,test_C1_path) 
-print("Contrast change 1: ", rmse_C1)  
-image_compare_plt(test_path,test_C1_path, "Contrast+1")
-
-img1 = sk_io.imread(test_path)
-img2 = sk_io.imread(test_C1_path)
-
-change = img1 - img2
-print(change[0][:10])
-
-
-rmse_T50 = compare_image(test_T50_path, test_path)
-print("Temperature change 1: ", rmse_T50)
-
-rmse_E005 = compare_image(test_E005_path,test_path)
-print("Exposure change 0.05: ", rmse_E005)
-
-rmse_H1 = compare_image(test_H1_path,test_path)
-print("Highlights change 1: ", rmse_H1)
-
-rmse_S1 = compare_image(test_S1_path, test_path)
-print("Shadow change 1: ", rmse_S1)
 
 
 

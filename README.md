@@ -1,7 +1,10 @@
 # WeddingImageProcessing
+0. 0-Count.py
+Count the number of files in a folder 
 
 1. 1-ImageCompareRMSE.py:
 Compare two rgb images(RGB) and returns the RMSE value
+Plot the histrogram and CDF for the two compared images
 
 2. 1-BasicImageManipulations.py
 Created functions to:
@@ -27,6 +30,6 @@ Create a CNN model with SKeras for image classification.
 Demoed how to load previous trained models of image feature extraction, add a fully connected layer for classification, and train the CNN model.
 
 7. 3-ReadXMP2Labels.py
-Create functions to read through the XMP files and extract "Exposure", "Constrast", "Highlight", "Shadows", "Temperature" parameters of each XMP file. Then save these parameters in a list. 
+Create functions to read through the XMP files folder and extract "Exposure", "Constrast", "Highlight", "Shadows", "Temperature" parameters of each XMP file. Then save these parameters in a list. 
 
 8. 4-CNN_Keras.py

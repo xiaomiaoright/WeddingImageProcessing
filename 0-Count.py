@@ -20,8 +20,14 @@ count, file_name = CountFiles(NEF_file_path)
 print("The number of NEF files", count)
 print(file_name[:10])
 
-XPM_file_path = "/Users/user7/Downloads/HD6_12er/Erin & Dan Wedding/2017-09-23/ED_XMP"
+XPM_file_path = "/Users/user7/Downloads/HD6_12er/Erin & Dan Wedding/2017-09-23/ED_XMP_IndoorThings"
 XMP_count, XMP_file_name = CountFiles(XPM_file_path)
-print("The number of XMP files", XMP_count)
+print("The number of XMP files", XMP_count) 
+
+#ED_XMP 878
+#ED_XMP_IndoorPerson 350
+#ED_XMP_IndoorThings 66
+#ED_XMP_OutdoorPerson
+#ED_XMP_OutdoorThings
 print(XMP_file_name[:10])
 

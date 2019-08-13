@@ -1,4 +1,54 @@
-# Read in XMP Files and Extract the Exposure, Contrast, Highlight, Shadow, and Temperature parameters
+# Use the Erin and Dan Wedding images to visualize the data
+import os
+import rawpy
+import pandas as pd
+import numpy as np
+
+def NEFImage2Features(NEF_folder_path):
+
+    # create a feature dataframe
+    Features = pd.DataFrame()
+    
+    # go through all NEF files in folder
+    NEF_files = sorted(os.listdir(NEF_folder_path))
+    
+    # Get the images and show the predicted classes
+    for file_idx in range(len(NEF_files)):
+        # get the iamge name
+        image_name = NEF_files[file_idx]
+
+        # get the NEF image file path
+        NEF_path = os.path.join(NEF_folder_path, NEF_files[file_idx])
+
+        # read the NEF image as RGB
+        import rawpy
+        import imageio
+    
+        rp_image = rawpy.imread(NEF_path)
+        rgb = rp_image.postprocess()
+
+        # red the R, G, B channels seperately and sort from 0 to 255
+        rgb_1 = np.sort(rgb[:,:,0].ravel())
+        rgb_2 = np.sort(rgb[:,:,1].ravel())
+        rgb_3 = np.sort(rgb[:,:,2].ravel())
+
+        # save the R, G, B values to three columns in dataframe
+        dataset = pd.DataFrame({'Red': rgb_1, 'Green': rgb_2, 'Blue':rgb_3})
+
+        # value_count the R, G, B channels into 16 bins
+        df_1 = dataset['Red'].value_counts(bins = 16, normalize = True).sort_index()
+        df_2 = dataset['Green'].value_counts(bins = 16, normalize = True).sort_index()
+        df_3 = dataset['Blue'].value_counts(bins = 16, normalize = True).sort_index()
+
+        # save R, G, B channel bins count into one column of a new temporary dataframe
+        temp_df = pd.DataFrame({"rgb": df_rgb})
+        Features[image_name] = temp_df
+
+    # transpose the Features dataframe to make sure each column represents the a feature
+    Features = Features.T
+
+    return Features
+
 def XMP_parameter(xmp_file_path):
     fd = open(xmp_file_path)
     d = fd.read()
@@ -48,26 +98,6 @@ def XMP_parameter(xmp_file_path):
 
     return parameter
 
-#f = 'C:/Users/EyesHigh/Desktop/WeddingImageProcessing/data/XMPs/800_1743-1.xmp'
-#print(XMP_parameter(f))
-
-
-def XMPFolder2LabelList(XMP_folder_path):
-    import os 
-    # go through all XMP files in folder
-    files = sorted(os.listdir(XMP_folder_path))
-    Edit_labels = []
-    Names = []
-
-    for file_idx in range(len(files)):
-        file_name = files[file_idx]
-        XMP_file_path = os.path.join(XMP_folder_path,file_name)
-        parameter = XMP_parameter(XMP_file_path)
-        Edit_labels.append(parameter)
-        Names.append(file_name)
-
-    return Edit_labels, Names
-
 def XMPFolder2LabelDataFrame(XMP_folder_path):
     import os 
     # go through all XMP files in folder
@@ -88,17 +118,6 @@ def XMPFolder2LabelDataFrame(XMP_folder_path):
 
     return LabelsDataFrame
 
-XMP_file_path = '/Users/user7/Downloads/HD6_12er/Erin & Dan Wedding/ED_DataExploration/ED_DataExploration_XMP'
-Labels, Names = XMPFolder2LabelList(XMP_file_path)
-print(Labels)
-print(Names)
-print(len(Labels))
-Labels = np.array(Labels)
-Labels.shape
+XMP_folder_path = "/Users/user7/Downloads/HD6_12er/Erin & Dan Wedding/ED_DataExploration/ED_DataExploration_XMP" 
 
-Labels_df = pd.DataFrame(Labels)
-Labels_df.columns=["Exposure", "Contrast", "Highlights", "Shadows", "Temperature"]
-Labels_df.index = Names
-
-Labels_df
 

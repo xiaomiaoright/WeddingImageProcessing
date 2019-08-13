@@ -3,7 +3,7 @@
 # updage Keras
 !pip install --upgrade keras
 
-import keras
+import keras 
 from keras import backend as K
 
 print('Keras version:',keras.__version__)
@@ -13,7 +13,7 @@ import os
 from keras.preprocessing.image import ImageDataGenerator
 
 # The images are in a folder named 'shapes/training'
-training_folder_name = '../data/shapes/training'
+training_folder_name = '/Users/user7/Desktop/WeddingImageProcessing/data_shapes/training'
 
 # The folder contains a subfolder for each class of shape
 classes = sorted(os.listdir(training_folder_name))
@@ -36,7 +36,7 @@ train_generator = datagen.flow_from_directory(
     training_folder_name,
     target_size=pretrained_size,
     batch_size=batch_size,
-    class_mode='other',
+    class_mode='categorical',
     subset='training') # set as training data
 
 print("Preparing validation dataset...")
@@ -44,8 +44,10 @@ validation_generator = datagen.flow_from_directory(
     training_folder_name,
     target_size=pretrained_size,
     batch_size=batch_size,
-    class_mode='other',
+    class_mode='categorical',
     subset='validation') # set as validation data
+
+
 
 #### Download a trained model to use as a base
 from keras import applications

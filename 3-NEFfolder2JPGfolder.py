@@ -75,3 +75,4 @@ JPG_folder_path = "/Users/user7/Desktop/WeddingImageProcessing/data/JPGs"
 NEFfolder2JPGfolder(NEF_folder_path, JPG_folder_path)
 
 
+

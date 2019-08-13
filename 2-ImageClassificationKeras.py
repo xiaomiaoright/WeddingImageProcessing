@@ -1,7 +1,7 @@
 import os
 
 # The images are in a folder named 'shapes/training'
-training_folder_name = 'C:/Users/EyesHigh/Desktop/ImageProcessing/data2/shapes/training'
+training_folder_name = '/Users/user7/Desktop/WeddingImageProcessing/data_shapes/training'
 
 # All images are 128x128 pixels
 img_size = (128,128)
@@ -11,7 +11,7 @@ classes = sorted(os.listdir(training_folder_name))
 print(classes)
 
 ## Set up the Framework
-!pip install --upgrade keras
+#!pip install --upgrade keras
 
 import sys
 import keras
@@ -111,7 +111,7 @@ history = model.fit_generator(
     epochs = num_epochs)
 
 ## View the Loss History
-%matplotlib inline
+#%matplotlib inline
 from matplotlib import pyplot as plt
 
 epoch_nums = range(1,num_epochs+1)
@@ -128,7 +128,7 @@ plt.show()
 import numpy as np
 from sklearn.metrics import confusion_matrix
 import matplotlib.pyplot as plt
-%matplotlib inline
+#%matplotlib inline
 
 print("Generating predictions from validation data...")
 # Get the image and label arrays for the first batch of validation data
@@ -224,14 +224,14 @@ import numpy as np
 from PIL import Image
 from keras.models import load_model
 from matplotlib import pyplot as plt
-%matplotlib inline
+#%matplotlib inline
 
 # load the saved model
 modelFileName = 'shape-classifier.h5'
 model = load_model(modelFileName) 
 
 #get the list of test image files
-test_folder = 'C:/Users/EyesHigh/Desktop/ImageProcessing/data2/shapes/test'
+test_folder = '/Users/user7/Desktop/WeddingImageProcessing/data_shapes/test'
 test_image_files = os.listdir(test_folder)
 
 # Empty array on which to store the images
@@ -240,7 +240,7 @@ image_arrays = []
 size = (128,128)
 background_color="white"
 
-fig = plt.figure(figsize=(12, 8))
+
 
 # Get the images and show the predicted classes
 for file_idx in range(len(test_image_files)):
@@ -257,8 +257,12 @@ for file_idx in range(len(test_image_files)):
 predictions = predict_image(model, np.array(image_arrays))
 
 # plot easch image with its corresponding prediction
+fig = plt.figure(figsize=(12, 8))
+
 for idx in range(len(predictions)):
     a=fig.add_subplot(1,len(predictions),idx+1)
     imgplot = plt.imshow(image_arrays[idx])
     a.set_title(predictions[idx])
+
+plt.show()
 

@@ -61,18 +61,18 @@ def XMPFolder2LabelList(XMP_folder_path):
     # go through all XMP files in folder
     files = sorted(os.listdir(XMP_folder_path))
     Edit_labels = []
+    Names = []
 
     for file_idx in range(len(files)):
         file_name = files[file_idx]
         XMP_file_path = os.path.join(XMP_folder_path,file_name)
         parameter = XMP_parameter(XMP_file_path)
         Edit_labels.append(parameter)
+        Names.append(file_name)
         
-    return Edit_labels
+    return Edit_labels, Names
 
-XMP_file_path = '/Users/user7/Downloads/HD6_12er/Erin & Dan Wedding/2017-09-23/ED_XMP'
-Labels = XMPFolder2LabelList(XMP_file_path)
+XMP_file_path = '/Users/user7/Downloads/HD6_12er/Erin & Dan Wedding/ED_DataExploration/ED_DataExploration_XMP'
+Labels, Names = XMPFolder2LabelList(XMP_file_path)
 print(Labels)
-
-Edit_labels = XMPFolder2LabelList(XMP_file_path)
-print(np.array(Edit_labels).shape)
+print(Names)

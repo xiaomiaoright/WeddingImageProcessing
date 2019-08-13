@@ -11,8 +11,6 @@ def XMP_parameter(xmp_file_path):
     Exposure = xmp_Exposure.split("\"")[1]
     Exposure = float(Exposure)
     parameter.append(Exposure)
-    
-
 
 
     xmp_start = d.find('crs:Contrast2012=')
@@ -38,8 +36,6 @@ def XMP_parameter(xmp_file_path):
     Shadows = int(Shadows)
     parameter.append(Shadows)
     
-
-
 
     xmp_start = d.find('crs:Temperature=')
     xmp_end = d.find('crs:Tint=')
@@ -76,3 +72,13 @@ XMP_file_path = '/Users/user7/Downloads/HD6_12er/Erin & Dan Wedding/ED_DataExplo
 Labels, Names = XMPFolder2LabelList(XMP_file_path)
 print(Labels)
 print(Names)
+print(len(Labels))
+Labels = np.array(Labels)
+Labels.shape
+
+Labels_df = pd.DataFrame(Labels)
+Labels_df.columns=["Exposure", "Contrast", "Highlights", "Shadows", "Temperature"]
+Labels_df.index = Names
+
+Labels_df
+

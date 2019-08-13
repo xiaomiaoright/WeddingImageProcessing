@@ -157,3 +157,9 @@ a.set_title("NEF2PIL2RGB Images")
 plt.show()
 
 
+NEF_path = "/Users/user7/Downloads/HD6_12er/Lorraine & Chad Wedding/2017-08-19/LC_NEF/CAR_0136.NEF"
+
+rp_image = rawpy.imread(NEF_path)
+rgb = rp_image.postprocess()
+print(rgb.shape)
+plt.imshow(rgb)

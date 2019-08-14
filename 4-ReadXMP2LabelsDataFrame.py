@@ -124,8 +124,12 @@ LC_Label_IndoorPerson.describe()
 
 import os
 ### Test the XMP IndoorPerson folders
-# !!!!!! There is a problem with ED IndoorPerson folder, need to update
-XMP_folder_path = "/Users/user7/Downloads/HD6_12er/Erin & Dan Wedding/2017-09-23/ED_NEF"
+# Export the XMP files for all the ED wedding NEF files, and test it. it works.
+#XMP_folder_path = "/Users/user7/Downloads/HD6_12er/Erin & Dan Wedding/2017-09-23/ED_NEF_new"
+
+# Now try to work with IndoorPerson XMP files
+
+XMP_folder_path = "/Users/user7/Downloads/HD6_12er/Erin & Dan Wedding/2017-09-23/ED_NEF_new"
 files = sorted(os.listdir(XMP_folder_path))
 Edit_labels = []
 Names = []
@@ -140,6 +144,7 @@ for file_idx in range(len(files)):
     Edit_labels.append(parameter)
     Names.append(file_name)
 
+len(Edit_labels)
 
 
 # JY XMP IndoorPerson folder has no problem

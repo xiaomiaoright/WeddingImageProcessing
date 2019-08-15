@@ -31,3 +31,5 @@ print("The number of XMP files", XMP_count)
 #ED_XMP_OutdoorThings
 print(XMP_file_name[:10])
 
+
+

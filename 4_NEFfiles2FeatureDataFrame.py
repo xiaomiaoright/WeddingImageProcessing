@@ -101,7 +101,7 @@ def NEFFolder2Feature(NEF_folder_path):
 
         feature_array = np.array(feature_list).ravel()
 
-        Features[files[file_idx]] = feature_array
+        Features[files[file_idx].split(".")[0]] = feature_array
 
     return Features.T
 
@@ -171,3 +171,8 @@ def NEFImage2Features(NEF_folder_path):
 
 test_DF = pd.read_csv("/Users/user7/Desktop/WeddingImageProcessing/data/Features_DF.csv", header = 0)
 test_DF
+
+
+
+
+

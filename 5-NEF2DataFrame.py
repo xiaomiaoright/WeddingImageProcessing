@@ -63,6 +63,7 @@ LM_NEF = "/Users/user7/Downloads/HD6_12er/Lauren & Matt Wedding/2017-09-08/LM_NE
 LC_NEF = "/Users/user7/Downloads/HD6_12er/Lorraine & Chad Wedding/2017-08-19/LC_NEF"
 
 # Remove the .DS_Store file in ED_NEF folder
+os.remove("/Users/user7/Downloads/HD6_12er/Erin & Dan Wedding/2017-09-23/ED_NEF/.DS_Store")
 os.remove("/Users/user7/Downloads/HD6_12er/James & Yasmin Wedding/2017-08-06/JY_NEF/.DS_Store")
 os.remove("/Users/user7/Downloads/HD6_12er/Lauren & Matt Wedding/2017-09-08/LM_NEF/.DS_Store")
 os.remove("/Users/user7/Downloads/HD6_12er/Lorraine & Chad Wedding/2017-08-19/LC_NEF/.DS_Store")
@@ -211,4 +212,87 @@ JY_Feature_Df
 
 
 
-X_train, X_test, y_train, y_test = train_test_split(iris.data, iris.target, test_size=0.4, random_state=0)
+def NEFFolder2Feature32bins(NEF_folder_path):
+    import os 
+
+    Features = pd.DataFrame()
+
+    # go through all XMP files in folder
+    files = sorted(os.listdir(NEF_folder_path))
+    
+
+    for file_idx in range(len(files)):
+        feature_list = []
+
+        NEF_file_path = os.path.join(NEF_folder_path,files[file_idx])
+
+        rp_image = rawpy.imread(NEF_file_path)
+        rgb = rp_image.postprocess()
+
+        # red the R, G, B channels seperately and sort from 0 to 255
+        rgb_1 = np.sort(rgb[:,:,0].ravel())
+        rgb_2 = np.sort(rgb[:,:,1].ravel())
+        rgb_3 = np.sort(rgb[:,:,2].ravel())
+
+        dataset = pd.DataFrame({'Red': rgb_1, 'Green': rgb_2, 'Blue':rgb_3})
+
+        df_1 = dataset['Red'].value_counts(bins = 32, normalize = True).sort_index()
+        df_2 = dataset['Green'].value_counts(bins = 32, normalize = True).sort_index()
+        df_3 = dataset['Blue'].value_counts(bins = 32, normalize = True).sort_index()
+
+        feature_list.append(df_1.tolist())
+        feature_list.append(df_2.tolist())
+        feature_list.append(df_3.tolist())
+
+        feature_array = np.array(feature_list).ravel()
+
+        Features[files[file_idx].split(".")[0]] = feature_array
+
+    return Features.T
+
+from pytictoc import TicToc
+t = TicToc() #create instance of class
+t.tic()
+ED_Feature_32bins = NEFFolder2Feature32bins(ED_NEF)
+t.toc()
+
+ED_Feature_32bins.head()
+
+
+# Rename the columns names
+channels = ['R', 'G', 'B']
+new_columns = []
+for ch in channels:
+    k = 0
+    for i in range(32):
+        col_name = ch + str(k) + "_" + str(k+7)
+        new_columns.append(col_name)
+        k = k+8
+ED_Feature_32bins.columns = new_columns
+ED_Feature_32bins.head()
+
+csv_folder_path = "/Users/user7/Desktop/WeddingImageProcessing/WeddingDatasetBins32"
+
+DataFrame2CSV(ED_Feature_32bins, csv_folder_path, "ED_Features_32bins.csv")
+
+
+## Append the features
+ED_IP_Label_path = "/Users/user7/Desktop/WeddingImageProcessing/WeddingDataPrepBins16/ED_Label_IndoorPerson.csv"
+ED_IP_Labels = pd.read_csv(ED_IP_Label_path, index_col = 0)
+
+ED_IP_Labels.head()
+
+ED_IP_Features_Labels_32bins = ED_Feature_32bins.join(ED_IP_Labels, how = "inner")
+
+ED_IP_Features_Labels_32bins.head()
+
+def DataFrame2CSV(df, csv_folder_path, csv_file_name):
+    
+    csv_file_path = os.path.join(csv_folder_path, csv_file_name)
+    df.to_csv(csv_file_path)
+
+csv_folder_path = "/Users/user7/Desktop/WeddingImageProcessing/WeddingDatasetBins32"
+csv_file_name_IP = "ED_IP_Features_Labels_32bins.csv"
+DataFrame2CSV(ED_IP_Features_Labels_32bins, csv_folder_path, csv_file_name_IP)
+ED_Feature_32bins.shape
+ED_IP_Features_Labels_32bins.shape

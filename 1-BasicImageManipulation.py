@@ -163,3 +163,23 @@ rp_image = rawpy.imread(NEF_path)
 rgb = rp_image.postprocess()
 print(rgb.shape)
 plt.imshow(rgb)
+
+
+
+import os 
+import numpy as np
+import matplotlib.pyplot as plt
+from matplotlib import image as mp_image
+
+image = plt.imread("/Users/user7/Desktop/WeddingImageProcessing/DataExplore/800_0206.jpg")
+
+image.shape
+
+image2 = plt.imread("/Users/user7/Desktop/WeddingImageProcessing/DataExplore/CAR_2812.jpg")
+image2.shape
+
+image3 = plt.imread("/Users/user7/Desktop/WeddingImageProcessing/DataExplore/800_6665.jpg")
+image3.shape
+
+image4 = plt.imread("/Users/user7/Desktop/WeddingImageProcessing/DataExplore/800_6738.jpg")
+image4.shape

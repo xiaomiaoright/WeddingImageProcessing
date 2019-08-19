@@ -115,4 +115,6 @@ LM_Label_IndoorPerson.describe()
 LC_Label_IndoorPerson = XMPFolder2LabelDataFrame(LC_XMP_IndoorPerson)
 LC_Label_IndoorPerson.describe()
 
+ED_XMP
+
 
